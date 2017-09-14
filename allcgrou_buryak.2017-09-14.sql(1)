@@ -1,0 +1,263 @@
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categories` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `title` varchar(85) NOT NULL DEFAULT '',
+  `meta_d` varchar(85) NOT NULL DEFAULT '',
+  `meta_k` varchar(85) NOT NULL DEFAULT '',
+  `text` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `post` int(5) NOT NULL DEFAULT '0',
+  `author` varchar(34) NOT NULL DEFAULT '',
+  `text` text NOT NULL,
+  `date` date NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `comments_setting`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments_setting` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
+  `img` varchar(85) NOT NULL DEFAULT '',
+  `sum` int(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `data`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `data` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `cat` int(1) NOT NULL DEFAULT '0',
+  `meta_d` varchar(85) NOT NULL DEFAULT '',
+  `meta_k` varchar(85) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `text` text NOT NULL,
+  `view` int(7) NOT NULL DEFAULT '0',
+  `author` varchar(34) NOT NULL DEFAULT '',
+  `date` date NOT NULL DEFAULT '0000-00-00',
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `rating` int(10) NOT NULL DEFAULT '5',
+  `q_vote` int(10) NOT NULL DEFAULT '1',
+  `activation` int(5) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `id_login` int(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `text` (`text`),
+  FULLTEXT KEY `title` (`title`)
+) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `messages` (
+  `id` int(9) NOT NULL AUTO_INCREMENT,
+  `author` varchar(55) NOT NULL,
+  `poluchatel` varchar(55) NOT NULL,
+  `date` date NOT NULL DEFAULT '0000-00-00',
+  `text` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `online`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `online` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `ip` char(5) DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  UNIQUE KEY `id` (`id`),
+  KEY `ip` (`ip`)
+) ENGINE=MyISAM AUTO_INCREMENT=2943 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `options` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `str` int(2) NOT NULL DEFAULT '0',
+  `prcode` int(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `oshibka`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oshibka` (
+  `ip` varchar(12) NOT NULL DEFAULT '',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `col` int(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `settings` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `title` varchar(85) NOT NULL DEFAULT '',
+  `meta_d` varchar(85) NOT NULL DEFAULT '',
+  `meta_k` varchar(85) NOT NULL DEFAULT '',
+  `text` text NOT NULL,
+  `page` varchar(85) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `userlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userlist` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `user` varchar(16) NOT NULL DEFAULT '',
+  `pass` varchar(16) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(15) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `avatar` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `activation` int(1) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (6,'Test Project','SoftGroup','qwerty','sd');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `comments_setting` WRITE;
+/*!40000 ALTER TABLE `comments_setting` DISABLE KEYS */;
+INSERT INTO `comments_setting` VALUES (1,'img/sum.gif',3);
+/*!40000 ALTER TABLE `comments_setting` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `data` WRITE;
+/*!40000 ALTER TABLE `data` DISABLE KEYS */;
+INSERT INTO `data` VALUES (131,6,' Беспроводная зарядка','iphone X','Использование стеклянной задней панели позволило внедрить технологию беспроводной зарядки. Отрадно, что в Apple не стали в очередной раз придумывать собственные стандарты, а воспользовались существующей технологией Qi. Это даёт надежду, что станции подзарядки для iPhone смогут выпускать и сторонние производители.','<p>Использование стеклянной задней панели позволило внедрить технологию беспроводной зарядки. Отрадно, что в Apple не стали в очередной раз придумывать собственные стандарты, а воспользовались существующей технологией Qi. Это даёт надежду, что станции подзарядки для iPhone смогут выпускать и сторонние производители.</p>',7,'Nomane L.S.','2017-09-10',' Беспроводная зарядка',5,1,1,'mntk_ntu2013.pdf',45),(130,6,'Распознавание лиц','iphone X','<p align=\"center\">Face ID используется в iPhone X для аутентификации пользователя. Продвинутая система распознавания лиц позволяет безопасно разблокировать iPhone, использовать Apple Pay, выполнять вход в приложения и заниматься другими задачами, требующими повышенного уровня конфиденциальности.\n\nПозвольте, но нечто подобное имеется в ОС Android начиная с версии Ice Cream Sandwich, которая вышла в 2011 году. Да, в момент появления эта функция была несовершенна и частенько давала сбои. Но за прошедшие годы технология была значительно улучшена и на сегодняшний день работает просто замечательно.\n</p>','<p>Face ID используется в iPhone X для аутентификации пользователя. Продвинутая система распознавания лиц позволяет безопасно разблокировать iPhone, использовать Apple Pay, выполнять вход в приложения и заниматься другими задачами, требующими повышенного уровня конфиденциальности.\n\nПозвольте, но нечто подобное имеется в ОС Android начиная с версии Ice Cream Sandwich, которая вышла в 2011 году. Да, в момент появления эта функция была несовершенна и частенько давала сбои. Но за прошедшие годы технология была значительно улучшена и на сегодняшний день работает просто замечательно.\n</p>\n',7,'Second-noname L.S.','2017-09-10','Распознавание лиц',5,1,1,'Znpgmb_2012_4(2)__51 (1).pdf',44);
+/*!40000 ALTER TABLE `data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `online` WRITE;
+/*!40000 ALTER TABLE `online` DISABLE KEYS */;
+INSERT INTO `online` VALUES (2942,'127.0','2017-09-10 09:17:34'),(2941,'127.0','2017-09-10 09:16:19');
+/*!40000 ALTER TABLE `online` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `options` WRITE;
+/*!40000 ALTER TABLE `options` DISABLE KEYS */;
+INSERT INTO `options` VALUES (1,5,433);
+/*!40000 ALTER TABLE `options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `oshibka` WRITE;
+/*!40000 ALTER TABLE `oshibka` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oshibka` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `settings` WRITE;
+/*!40000 ALTER TABLE `settings` DISABLE KEYS */;
+INSERT INTO `settings` VALUES (1,'Головна сторінка','','Головна','<p>вы зашли на тестовый сайт</p>','index'),(4,'Про нас','','Про нас','<p>Lorem Ipsum - це текст-\"риба\", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною \"рибою\" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. \"Риба\" не тільки успішно пережила п\'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп\'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum.</p>','about'),(7,'Реєстрація','Реєстрація користувачів','Реєстрація','','reg'),(2,'Авторизація','','Авторизація','','authorization');
+/*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `userlist` WRITE;
+/*!40000 ALTER TABLE `userlist` DISABLE KEYS */;
+INSERT INTO `userlist` VALUES (1,'pntu','admin');
+/*!40000 ALTER TABLE `userlist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (44,'byryakov','e388f02f750e65ebba95ab9493cda01eb3p6f','avatars/net-avatara.jpg','frsghdfjnfdklgnj@fgjgj.ru',1,'2017-09-10 10:55:31');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
